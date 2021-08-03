@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1" import= " br.com.fatecmc.esiii.dominio.* "%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,22 +9,9 @@
 <link rel="stylesheet" href="css/style.css">
 </head>
 <%
-	String id=request.getParameter("id");
-	System.out.print(id);
-	String email=request.getParameter("email");
-	String pnome=request.getParameter("pnome");
-	String cpf=request.getParameter("cpf");
-	String formacao=request.getParameter("formacao");
-	String mnome=request.getParameter("mnome");
-	String unome=request.getParameter("unome");
-	String curso=request.getParameter("curso");
-	String endereco=request.getParameter("endereco");
-	
-	String cep=request.getParameter("cep");
-	String cidade=request.getParameter("cidade");
-	String estado=request.getParameter("estado");
-	String numero=request.getParameter("numero");
-	String logradouro=request.getParameter("logradouro");
+Object ob = new Object();
+ob = request.getAttribute("professor");
+Professor professor = (Professor)ob;
 
 %>
 <body>
@@ -81,40 +68,40 @@
             <form name = "formProfessor" action = "edProfessor" method="get">
             	 <div style="display: none;">
 					<label for="id">ID: </label>
-	                <input type="text" id="id" name="id" value=<%=id%>>
+	                <input type="text" id="id" name="id" value=<%=professor.getId()%>>
 				</div>
 				<div style="display: none;">
 					<label for="curso">Curso: </label>
-	                <input type="text" id="curso" name="curso" value=<%=curso%>>
+	                <input type="text" id="curso" name="curso" value=<%=professor.getCurso().getId()%>>
 				</div>
 				<div style="display: none;">
 					<label for="endereco">Endereco: </label>
-	                <input type="text" id="endereco" name="endereco" value=<%=endereco%>>
+	                <input type="text" id="endereco" name="endereco" value=<%=professor.getEndereco().getId()%>>
 				</div>
                 
                 <label for="pnome">Primeiro Nome:</label>
-                <div class="centralizar"><input type="text" id="pnome" name="pnome" value="<%=pnome%>"></div>
+                <div class="centralizar"><input type="text" id="pnome" name="pnome" value="<%=professor.getPnome()%>"></div>
                 <label for="mnome">Nome do Meio:</label>
-                <div class="centralizar"><input type="text" id="mnome" name="mnome" value="<%=mnome%>"></div>
+                <div class="centralizar"><input type="text" id="mnome" name="mnome" value="<%=professor.getMnome()%>"></div>
                	<label for="unome">Ultimo nome:</label>
-                <div class="centralizar"><input type="text" id="unome" name="unome" value="<%=unome%>"></div>
+                <div class="centralizar"><input type="text" id="unome" name="unome" value="<%=professor.getUnome()%>"></div>
                 <label for="email">Email:</label>
-                <div class="centralizar"><input type="text" id="email" name="email" value="<%=email%>"></div>	
+                <div class="centralizar"><input type="text" id="email" name="email" value="<%=professor.getEmail()%>"></div>	
                	<label for="cpf">Cpf:</label>
-                <div class="centralizar"><input type="text" id="cpf" name="cpf" value="<%=cpf%>"></div>
+                <div class="centralizar"><input type="text" id="cpf" name="cpf" value="<%=professor.getCpf()%>"></div>
                 <label for="formacao">Formação:</label>
-                <div class="centralizar"><input type="text" id="formacao" name="formacao" value="<%=formacao%>"></div>
+                <div class="centralizar"><input type="text" id="formacao" name="formacao" value="<%=professor.getFormacao()%>"></div>
                	
                	<label for="unome">Cidade:</label>
-               	<div class="centralizar"><input type="text" id="cidade" name="cidade" value="<%=cidade%>"></div>
+               	<div class="centralizar"><input type="text" id="cidade" name="cidade" value="<%=professor.getEndereco().getCidade()%>"></div>
                 <label for="mnome">Cstado:</label>
-                <div class="centralizar"><input type="text" id="estado" name="estado" value="<%=estado%>"></div>
+                <div class="centralizar"><input type="text" id="estado" name="estado" value="<%=professor.getEndereco().getEstado()%>"></div>
                	<label for="unome">Numero:</label>
-                <div class="centralizar"><input type="text" id="numero" name="numero" value="<%=numero%>"></div>
+                <div class="centralizar"><input type="text" id="numero" name="numero" value="<%=professor.getEndereco().getNumero()%>"></div>
                	<label for="unome">Logradouro:</label>
-               	<div class="centralizar"><input type="text" id="logradouro" name="logradouro" value="<%=logradouro%>"></div>
+               	<div class="centralizar"><input type="text" id="logradouro" name="logradouro" value="<%=professor.getEndereco().getNumero()%>"></div>
                 <label for="mnome">Cep:</label>
-                <div class="centralizar"><input type="text" id="cep" name="cep" value="<%=cep%>"></div>
+                <div class="centralizar"><input type="text" id="cep" name="cep" value="<%=professor.getEndereco().getCep()%>"></div>
                	
                	<input class="button"  type = "submit"id="operacao" name = "operacao" value = "EDITAR" >
     

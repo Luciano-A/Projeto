@@ -103,21 +103,15 @@
 	           	<td><%= d.getEndereco().getNumero()%></td>
 	           	<td><%= d.getEndereco().getCep()%></td>
 	           
-	           <td><div class ="aa"><a href ="editar-professor.jsp?id=<%= d.getId()%>
-	           	&pnome=<%= d.getPnome()%>
-	           	&mnome=<%= d.getMnome()%>
-				&unome=<%= d.getUnome()%>
-	           	&email=<%= d.getEmail()%>
-	         	&cpf=<%= d.getCpf()%>
-	         	&formacao=<%= d.getFormacao()%>
-	           	&curso=<%= d.getCurso().getId()%>
-	           	&endereco=<%= d.getEndereco().getId()%>
-	           	&cep=<%= d.getEndereco().getCep()%>
-	           	&cidade=<%= d.getEndereco().getCidade()%>
-	           	&estado=<%= d.getEndereco().getEstado()%>
-	           	&logradouro=<%= d.getEndereco().getLogradouro()%>
-	           	&numero=<%= d.getEndereco().getNumero()%>
-	           ">EDITAR</a></div></td>
+	           	<td>
+	           		<form name = "formProfessor" action = "edRedProfessor" method="get">
+	           			<div style="display: none;">
+	           				<input type="text" id="id" name="id" value="<%=d.getId()%>">
+	           					           				
+	           			</div>   
+			      		<input class="button" id="operacao" name="operacao" type = "submit" value = "EDITAR PROFESSOR" >
+			    	</form>
+				</td>
 	           	<td>
 	           		<form name = "formProfessor" action = "exProfessor" method="get">
 	           			<div style="display: none;">

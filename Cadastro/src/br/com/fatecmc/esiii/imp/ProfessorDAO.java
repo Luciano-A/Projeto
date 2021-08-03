@@ -279,7 +279,79 @@ public class ProfessorDAO implements IDAO{
 		
 	}
 
-
+	public EntidadeDominio consultaUnica (EntidadeDominio entidade) throws Exception{
+		EntidadeDominio professores = new EntidadeDominio();
+		Connection connection=null;
+		PreparedStatement pst = null;
+		
+		try {
+			connection = Conexao.getConnectionPostgres();	
+			connection.setAutoCommit(false);
+			
+	
+							
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT\r\n"
+				+ "   *\r\n"
+				+ "FROM\r\n"
+				+ "    tb_professor\r\n"
+				+ "INNER JOIN tb_curso\r\n"
+				+ "    ON pro_cur_id = cur_id\r\n"
+				+ "	INNER JOIN tb_endereco\r\n"
+				+ "    ON pro_end_id = end_id WHERE pro_id="+entidade.getId()+" ;");
+				
+				
+		pst = connection.prepareStatement(sql.toString(),
+				Statement.RETURN_GENERATED_KEYS);
+	
+		ResultSet rs = pst.executeQuery();
+		while(rs.next()) {
+			Professor prof = new Professor();
+			prof.setId(rs.getInt("pro_id"));
+			prof.setPnome(rs.getString("pro_pnome"));
+			prof.setMnome(rs.getString("pro_mnome"));
+			prof.setUnome(rs.getString("pro_unome"));
+			prof.setEmail(rs.getString("pro_email"));
+			prof.setCadastro(rs.getDate("pro_cadastro").toString());
+			prof.setCpf(rs.getString("pro_cpf"));
+			prof.setFormacao(rs.getString("pro_formacao"));
+			Curso cur = new Curso();
+			cur.setDescricao(rs.getString("cur_descricao"));
+			cur.setNome(rs.getString("cur_nome"));
+			cur.setId(rs.getInt("cur_id"));
+			prof.setCurso(cur);
+			
+			Endereco end = new Endereco();
+			end.setCep(rs.getString("end_cep"));
+			end.setCidade(rs.getString("end_cidade"));
+			end.setEstado(rs.getString("end_estado"));
+			end.setId(rs.getInt("end_id"));
+			end.setLogradouro(rs.getString("end_logradouro"));
+			end.setNumero(rs.getString("end_numero"));
+			prof.setEndereco(end);
+			
+			professores =prof;
+		}
+				
+		} catch (SQLException | ClassNotFoundException e) {
+			try {
+				connection.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+				throw e1;
+			}
+			e.printStackTrace();			
+		}finally{
+			try {
+				pst.close();
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw e;
+			}
+		}
+		return professores;	
+	}
 
 
 	

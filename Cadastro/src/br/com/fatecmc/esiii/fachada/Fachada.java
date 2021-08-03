@@ -149,5 +149,18 @@ public class Fachada implements IFachada {
 			}
 		return lista;
 	}
+	public EntidadeDominio consultaUnica(EntidadeDominio entidade) {
+		EntidadeDominio lista = new EntidadeDominio();
+		String nomeClasse = entidade.getClass().getName();
+
+			IDAO dao = daos.get(nomeClasse);
+			try {
+				lista = dao.consultaUnica(entidade);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		return lista;
+	}
 
 }

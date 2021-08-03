@@ -227,6 +227,14 @@ public class CursoDAO   implements IDAO{
 		}
 			
 		}
+
+
+
+	@Override
+	public EntidadeDominio consultaUnica(EntidadeDominio entidade) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 

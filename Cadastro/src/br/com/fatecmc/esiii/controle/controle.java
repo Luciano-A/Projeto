@@ -18,7 +18,7 @@ import br.com.fatecmc.esiii.viewhelper.*;
 /**
  * Servlet implementation class controle
  */
-@WebServlet({"/controle","/cdCurso","/csCurso","/edCurso","/exCurso","/cdAluno","/csAluno","/edAluno","/exAluno","/cdProfessor","/csProfessor","/edProfessor","/exProfessor","/ccAluno","/ccProfessor"})
+@WebServlet({"/controle","/cdCurso","/csCurso","/edCurso","/exCurso","/cdAluno","/csAluno","/edAluno","/exAluno","/cdProfessor","/csProfessor","/edProfessor","/exProfessor","/ccAluno","/ccProfessor","/edRedProfessor"})
 public class controle extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static String operacao = null;
@@ -35,6 +35,7 @@ public class controle extends HttpServlet {
 		commands.put("CONSULTAR", new ConsultarCommand());
 		commands.put("EDITAR", new EditarCommand());
 		commands.put("CADASTRAR", new ConsultarCommand());
+		commands.put("EDITAR PROFESSOR", new ConsultaUnicaCommand());
 		
 		
 		vhs = new HashMap<String, IViewHelper>();
@@ -52,6 +53,7 @@ public class controle extends HttpServlet {
 		vhs.put("/Cadastro/exProfessor", new VhProfessorExcluir());
 		vhs.put("/Cadastro/ccAluno", new VhAlunoCadastrarRedirecionamento());
 		vhs.put("/Cadastro/ccProfessor", new VhProfessorCadastrarRedirecionamento());
+		vhs.put("/Cadastro/edRedProfessor", new VhProfessorEditarRedirecionamento());
 		
     }
 
@@ -61,7 +63,7 @@ public class controle extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		operacao = request.getParameter("operacao");
 		String uri = request.getRequestURI();
-		
+		System.out.println(uri);
 		
 		IViewHelper vh = vhs.get(uri);
 		EntidadeDominio entidade = vh.getEntidade(request);

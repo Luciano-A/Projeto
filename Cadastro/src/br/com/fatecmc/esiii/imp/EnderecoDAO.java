@@ -234,6 +234,12 @@ public class EnderecoDAO extends AbstractDAO{
 		
 	}
 
+	@Override
+	public EntidadeDominio consultaUnica(EntidadeDominio entidade) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 	
 }

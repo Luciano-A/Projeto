@@ -9,4 +9,5 @@ public interface IDAO {
 	public void alterar(EntidadeDominio entidade)throws Exception;
 	public void excluir(EntidadeDominio entidade)throws Exception;
 	public List<EntidadeDominio> consultar(EntidadeDominio entidade) throws Exception;
+	public EntidadeDominio consultaUnica (EntidadeDominio entidade) throws Exception;
 }
